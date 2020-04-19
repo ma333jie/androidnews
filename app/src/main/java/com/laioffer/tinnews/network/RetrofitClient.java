@@ -4,6 +4,8 @@ import android.content.Context;
 
 import android.util.Log;
 
+import com.ashokvarma.gander.GanderInterceptor;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.laioffer.tinnews.model.NewsResponse;
 
 import java.io.IOException;
@@ -18,14 +20,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RetrofitClient {
-  
-    private static final String BASE_URL = "https://newsapi.org/v2/";
 
+    private static final String BASE_URL = "https://newsapi.org/v2/";
+    private static final String API_KEY = "3c5ea640adc545d3b75c31dfe47455e6";
 
 
     public static Retrofit newInstance(Context context) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new HeaderInterceptor())
+                .addInterceptor(new GanderInterceptor(context).showNotification(true))
+                .addNetworkInterceptor(new StethoInterceptor())
                 .build();
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -41,7 +45,7 @@ public class RetrofitClient {
             Request original = chain.request();
             Request request = original
                     .newBuilder()
-                    .header("X-Api-Key", ApiKey.getKey())
+                    .header("X-Api-Key", API_KEY)
                     .build();
             return chain.proceed(request);
         }
