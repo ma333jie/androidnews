@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,6 +47,21 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        SearchNewsAdapter newsAdapter = new SearchNewsAdapter();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+
+        gridLayoutManager.setSpanSizeLookup(
+                new GridLayoutManager.SpanSizeLookup() {
+                    @Override
+                    public int getSpanSize(int position) {
+                        return position == 0 ? 2 : 1;
+                    }
+                });
+
+
+        binding.recyclerView.setLayoutManager(gridLayoutManager);
+        binding.recyclerView.setAdapter(newsAdapter);
+
         binding.searchView.setOnEditorActionListener(
                 (v, actionId, event) -> {
                     String searchText = binding.searchView.getText().toString();
@@ -66,6 +82,8 @@ public class SearchFragment extends Fragment {
                         newsResponse -> {
                             if (newsResponse != null) {
                                 Log.d("Search_page", newsResponse.toString());
+                                newsAdapter.setArticles(newsResponse.articles);
+
                             }
                         });
     }
