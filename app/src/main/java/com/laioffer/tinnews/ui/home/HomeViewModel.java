@@ -6,9 +6,15 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.laioffer.tinnews.model.NewsResponse;
+import com.laioffer.tinnews.network.NewsApi;
 import com.laioffer.tinnews.repository.NewsRepository;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class HomeViewModel extends ViewModel {
+
 
     private final NewsRepository repository;
     private final MutableLiveData<String> countryInput = new MutableLiveData<>();
@@ -21,7 +27,10 @@ public class HomeViewModel extends ViewModel {
         countryInput.setValue(county);
     }
 
-    public LiveData<NewsResponse> getTopHeadLines(){
+    public LiveData<NewsResponse> getTopHeadlines(){
         return Transformations.switchMap(countryInput,repository::getTopHeadlines);
     }
+
+
+
 }

@@ -25,6 +25,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+     viewBinding {
+         enabled = true
+     }
 }
 
 dependencies {
@@ -51,6 +54,9 @@ dependencies {
 
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
     implementation 'com.facebook.stetho:stetho-okhttp:1.5.1'
+
+    implementation 'com.mindorks:placeholderview:0.7.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 
 }
