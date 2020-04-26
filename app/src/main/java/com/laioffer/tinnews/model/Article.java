@@ -1,13 +1,22 @@
 package com.laioffer.tinnews.model;
 
-import java.util.Objects;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+@Entity
 public class Article {
+    @Ignore
     public Source source;
     public String author;
     public String content;
     public String description;
     public String publishedAt;
+
+    @NonNull
+    @PrimaryKey
     public String title;
     public String url;
     public String urlToImage;

@@ -1,10 +1,12 @@
 package com.laioffer.tinnews.repository;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.laioffer.tinnews.database.AppDatabase;
 import com.laioffer.tinnews.model.NewsResponse;
 import com.laioffer.tinnews.network.NewsApi;
 import com.laioffer.tinnews.network.RetrofitClient;
@@ -15,6 +17,9 @@ import retrofit2.Response;
 
 public class NewsRepository {
     private final NewsApi newsApi;
+    private final AppDatabase database;
+    private AsyncTask asyncTask;
+
 
     public NewsRepository(Context context) {
         newsApi =  RetrofitClient.newInstance(context).create(NewsApi.class);
@@ -63,6 +68,9 @@ public class NewsRepository {
                         });
         return everyThingLiveData;
     }
+
+
+
 }
 
 
