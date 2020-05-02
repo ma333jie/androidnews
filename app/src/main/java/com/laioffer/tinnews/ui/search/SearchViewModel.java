@@ -26,6 +26,9 @@ public class SearchViewModel extends ViewModel {
     public LiveData<NewsResponse> searchNews() {
         return Transformations.switchMap(searchInput, repository::searchNews);
     }
+    public void setFavoriteArticleInput(Article article) {
+               favoriteArticleInput.setValue(article);
+    }
 
     public LiveData<Boolean> onFavorite() {
         return Transformations.switchMap(favoriteArticleInput, repository::favoriteArticle);
