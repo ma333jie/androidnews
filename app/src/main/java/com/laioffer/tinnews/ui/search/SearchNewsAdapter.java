@@ -20,6 +20,18 @@ import java.util.List;
 public class SearchNewsAdapter extends RecyclerView.Adapter<SearchNewsAdapter.SearchNewsViewHolder> {
     private List<Article> articles = new LinkedList<>();
 
+    interface LikeListener {
+        void onLike(Article article);
+
+        void onClick(Article article);
+    }
+
+    private LikeListener likeListener;
+
+    public void setLikeListener(LikeListener likeListener) {
+        this.likeListener = likeListener;
+    }
+    
     public void setArticles(List<Article> articles) {
         this.articles.clear();
         this.articles.addAll(articles);
@@ -41,7 +53,6 @@ public class SearchNewsAdapter extends RecyclerView.Adapter<SearchNewsAdapter.Se
         Picasso.get().load(article.urlToImage).into(holder.newsImage);
         holder.favorite.setImageResource(R.drawable.ic_favorite_border_black_24dp);
     }
-
 
 
     @Override

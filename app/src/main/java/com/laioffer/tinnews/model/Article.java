@@ -20,6 +20,7 @@ public class Article {
     public String title;
     public String url;
     public String urlToImage;
+    public Boolean favorite;
 
     @Override
     public boolean equals(Object o) {
