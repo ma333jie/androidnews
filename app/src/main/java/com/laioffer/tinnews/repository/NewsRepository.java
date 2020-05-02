@@ -101,13 +101,6 @@ public class NewsRepository {
         return isSuccessLiveData;
     }
 
-    public void onCancel() {
-        if (asyncTask != null) {
-            asyncTask.cancel(true);
-        }
-    }
-
-
     public LiveData<List<Article>> getAllSavedArticles() {
         return database.dao().getAllArticles();
     }
@@ -116,6 +109,14 @@ public class NewsRepository {
         AsyncTask.execute(() -> database.dao().deleteArticle(article));
 
     }
+    public void onCancel() {
+        if (asyncTask != null) {
+            asyncTask.cancel(true);
+        }
+    }
+
+
+
 }
 
 

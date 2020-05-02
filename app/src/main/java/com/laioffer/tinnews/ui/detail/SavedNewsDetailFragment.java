@@ -9,11 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.laioffer.tinnews.R;
+import com.laioffer.tinnews.databinding.FragmentSavedNewsDetailBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SavedNewsDetailFragment extends Fragment {
+
+    private FragmentSavedNewsDetailBinding binding;
 
     public SavedNewsDetailFragment() {
         // Required empty public constructor
@@ -24,6 +27,8 @@ public class SavedNewsDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_saved_news_detail, container, false);
+        binding = FragmentSavedNewsDetailBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+
     }
 }
