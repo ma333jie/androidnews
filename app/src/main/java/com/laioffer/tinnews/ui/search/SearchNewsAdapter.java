@@ -68,6 +68,10 @@ public class SearchNewsAdapter extends RecyclerView.Adapter<SearchNewsAdapter.Se
         holder.title.setText(article.title);
 
         holder.favorite.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        holder.itemView.setOnClickListener(
+                v -> {
+                    likeListener.onClick(article);
+                });
 
 // in case there is no photo
 //        if (article.urlToImage == null) {
